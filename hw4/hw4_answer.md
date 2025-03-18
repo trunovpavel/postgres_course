@@ -1,4 +1,4 @@
-1. Создал новую базу homework_3, подключился к ней.
+1. Создал новую базу homework_4, подключился к ней.
 ```
 create database homework_4;
 \c homework_4
