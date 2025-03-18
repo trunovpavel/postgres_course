@@ -24,6 +24,7 @@ UPDATE accounts SET amount = amount + 1 WHERE id = 2;
 UPDATE accounts SET amount = amount + 1 WHERE id = 2;
 ```
 В первоем терминале получили зависшую транзакцию, которая ожидает завершения транзакции, которая была начата во втором терминале. Как только транзакция во втором терминале завершится, первая транзакция получит доступ к строке с id=2
+
 7. Попытаемся записать из второго терминала в строку с id=1
 ```sql
 UPDATE accounts SET amount = amount + 1 WHERE id = 1;
@@ -37,6 +38,7 @@ Process 198085 waits for ShareLock on transaction 1339; blocked by process 19812
 КОНТЕКСТ:  while updating tuple (0,1) in relation "accounts"
 ```
 В первом терминале запись прошла успешно
+
 8. В итоге в базе наблюдаем 
 ```
  id | amount  
@@ -45,6 +47,7 @@ Process 198085 waits for ShareLock on transaction 1339; blocked by process 19812
   1 | 2001.00
   2 | 2001.00
 ```
+
 9. Посмотрим логи
 ```bash
 \! tail -n 50 /var/log/postgresql/postgresql-17-main.log
